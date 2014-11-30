@@ -1,11 +1,16 @@
 module Shadows where
 
-type Coordinate = Float
+import Data.Eq.Approximate
+import TypeLevel.NaturalNumber
+
+type ApproximateFloat = AbsolutelyApproximateValue (Digits N5) Float
+
+type Coordinate = ApproximateFloat
 data Point = Point Coordinate Coordinate deriving (Eq, Show)
 data Wall = Wall Point Point deriving (Eq, Show)
 
-type Angle = Float
-type Length = Float
+type Angle = ApproximateFloat
+type Length = ApproximateFloat
 data Shoint = Shoint Angle Length deriving (Eq, Show)
 data Shadow = Shadow Shoint Shoint deriving (Eq, Show)
 
