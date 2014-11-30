@@ -41,10 +41,11 @@ angleOf (Point 0 y) = case (y > 0) of
     True -> anYPlus
     False -> anYMinus
 angleOf (Point x y) = case (x > 0) of
-    True -> atan (y / x)
+    True -> rawAngle
     False -> case (y > 0) of
-        True -> atan (y / x) + rotHalf
-        False -> atan (y / x) - rotHalf
+        True -> rawAngle + rotHalf
+        False -> rawAngle - rotHalf
+    where rawAngle = atan (y / x)
 
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
