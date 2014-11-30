@@ -62,11 +62,11 @@ testList = TestList $ map TestCase $ [
             origin
     ] ++ assertManyAngleOf "Angle of points on axles"
         [
-            ((Point 0 0), 0)
-            ,((Point 1 0), 0)
-            ,((Point (-1) 0), (-pi))
-            ,((Point 0 1), (pi/2))
-            ,((Point 0 (-1)), (-pi/2))
+            ((Point 0 0), anZero)
+            ,((Point 1 0), anXPlus)
+            ,((Point (-1) 0), anXMinus)
+            ,((Point 0 1), anYPlus)
+            ,((Point 0 (-1)), anYMinus)
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"

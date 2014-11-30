@@ -10,7 +10,17 @@ data Shoint = Shoint Angle Length deriving (Eq, Show)
 data Shadow = Shadow Shoint Shoint deriving (Eq, Show)
 
 zeroPoint = Point 0 0
-origin = Shoint 0 0
+origin = Shoint anZero 0
+
+anZero = 0 ::Angle
+anXPlus = 0 :: Angle
+anXMinus = (-pi) :: Angle
+anYPlus = (pi/2) :: Angle
+anYMinus = (-pi/2) :: Angle
+anQuarter1 = (-pi/4) :: Angle
+anQuarter2 = (-pi*3/4) :: Angle
+anQuarter3 = (-pi*5/4) :: Angle
+anQuarter4 = (-pi*7/4) :: Angle
 
 createShadows :: Point -> [Wall] -> [Wall]
 createShadows _ walls = walls
