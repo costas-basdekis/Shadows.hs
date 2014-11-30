@@ -89,6 +89,15 @@ testList = TestList $ map TestCase $ [
             ,((Point (-1) 0), 1)
             ,((Point 0 1), 1)
             ,((Point 0 (-1)), 1)
+    ] ++ assertManyLengthOf "Length of points on quarters"
+        [
+            ((Point 1 1), sqrt 2)
+            ,((Point (-1) 1), sqrt 2)
+            ,((Point (-1) (-1)), sqrt 2)
+            ,((Point 1 (-1)), sqrt 2)
+    ] ++ assertManyLengthOf "Length of points"
+        [
+            ((Point 3 4), 5)
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
