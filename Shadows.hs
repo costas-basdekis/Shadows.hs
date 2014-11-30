@@ -68,3 +68,6 @@ pointToShoint light point = Shoint (angleOf vector) (lengthOf vector)
 
 xOf :: Shoint -> Coordinate
 xOf (Shoint angle length) = cos angle * length
+
+yOf :: Shoint -> Coordinate
+yOf (Shoint angle length) = sin angle * length
