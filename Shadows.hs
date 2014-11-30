@@ -59,3 +59,6 @@ lengthOf (Point x y) = sqrt $ x * x + y * y
 pointToShoint :: Light -> Point -> Shoint
 pointToShoint light point = Shoint (angleOf vector) (lengthOf vector)
     where vector = point .- light
+
+xOf :: Shoint -> Coordinate
+xOf (Shoint angle length) = cos angle * length
