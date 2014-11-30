@@ -23,6 +23,7 @@ angleOf (Point 0 0) = 0
 angleOf (Point x 0) = case (x > 0) of
     True -> 0
     False -> (-pi)
+angleOf (Point x y) = atan (y / x)
 
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
