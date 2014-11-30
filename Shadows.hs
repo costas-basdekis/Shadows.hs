@@ -3,7 +3,7 @@ module Shadows where
 import Data.Eq.Approximate
 import TypeLevel.NaturalNumber
 
-type ApproximateDouble = AbsolutelyApproximateValue (Digits N5) Double
+type ApproximateDouble = AbsolutelyApproximateValue (Digits N15) Double
 type NumberType = ApproximateDouble
 
 type Coordinate = NumberType
