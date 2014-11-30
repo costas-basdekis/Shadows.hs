@@ -10,3 +10,6 @@ createShadows _ walls = walls
 
 wallToShadow :: Point -> Wall -> Shadow
 wallToShadow = undefined
+
+pointToShoint :: Point -> Point -> Shoint
+pointToShoint = undefined
