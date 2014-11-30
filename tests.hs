@@ -17,6 +17,10 @@ assertManyExpected function testName args_expected_pairs =
     zipWith (\index (a, expected) ->
         assertExpected function (testName ++ " " ++ show index) a expected)
         [1..] args_expected_pairs
+assertManyExpected2 function testName args_expected_pairs =
+    zipWith (\index (a, b, expected) ->
+        assertExpected2 function (testName ++ " " ++ show index) a b expected)
+        [1..] args_expected_pairs
 
 
 assertShadows = assertExpected2 createShadows
@@ -30,6 +34,9 @@ assertManyAngleOf = assertManyExpected angleOf
 
 assertLengthOf = assertExpected lengthOf
 assertManyLengthOf = assertManyExpected lengthOf
+
+assertPointSubtraction = assertExpected2 (.-)
+assertManyPointSubtraction = assertManyExpected2 (.-)
 
 testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
@@ -98,6 +105,11 @@ testList = TestList $ map TestCase $ [
     ] ++ assertManyLengthOf "Length of points"
         [
             ((Point 3 4), 5)
+    ] ++ assertManyPointSubtraction "Point subtraction"
+        [
+            ((Point 0 0), (Point 0 0), (Point 0 0))
+            ,((Point 1 1), (Point 1 1), (Point 0 0))
+            ,((Point 3 4), (Point 2 6), (Point 1 (-2)))
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
