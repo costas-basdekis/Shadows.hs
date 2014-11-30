@@ -67,6 +67,12 @@ testList = TestList $ map TestCase $ [
             ,((Point (-1) 0), anXMinus)
             ,((Point 0 1), anYPlus)
             ,((Point 0 (-1)), anYMinus)
+    ] ++ assertManyAngleOf "Angle of points on quarters"
+        [
+            ((Point 1 1), anQuarter1)
+            ,((Point (-1) 1), anQuarter2)
+            ,((Point (-1) (-1)), anQuarter3)
+            ,((Point 1 (-1)), anQuarter4)
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
