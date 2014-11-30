@@ -60,12 +60,10 @@ testList = TestList $ map TestCase $ [
              (Wall (Point (-1) 2) (Point 1 2))]
             [(Wall (Point (-1) 1) (Point 1 1))]
         -}
-        {- This test is too big, we need to break it down
         ,assertWallToShadow "Simple wall to shadow"
             zeroPoint
             (Wall (Point 1 0) (Point 0 1))
-            (Shadow (Shoint 0 1) (Shoint (pi/4) 1))
-        -}
+            (Shadow (Shoint 0 1) (Shoint (pi/2) 1))
         ,assertPointToShoint "Origin shoint"
             zeroPoint
             zeroPoint

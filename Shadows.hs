@@ -32,7 +32,8 @@ createShadows :: Light -> [Wall] -> [Wall]
 createShadows _ walls = walls
 
 wallToShadow :: Light -> Wall -> Shadow
-wallToShadow = undefined
+wallToShadow light (Wall start end) =
+    Shadow (pointToShoint light start) (pointToShoint light end)
 
 angleOf :: Point -> Angle
 angleOf (Point 0 0) = 0
