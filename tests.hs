@@ -28,6 +28,7 @@ assertShadows = assertExpected2 createShadows
 assertWallToShadow = assertExpected2 wallToShadow
 
 assertPointToShoint = assertExpected2 pointToShoint
+assertManyPointToShoint = assertManyExpected2 pointToShoint
 
 assertAngleOf = assertExpected angleOf
 assertManyAngleOf = assertManyExpected angleOf
@@ -154,6 +155,31 @@ testList = TestList $ map TestCase $ [
             ((Point 0 0), (Point 0 0), (Point 0 0))
             ,((Point 1 1), (Point 0 0), (Point 1 1))
             ,((Point 2 6), (Point 1 (-2)), (Point 3 4))
-    ]
+    ] ++ assertManyPointToShoint "Point->Shoint->Point->Shoint on Axis"
+        (map (\point -> (zeroPoint,
+            (shointToPoint zeroPoint . pointToShoint zeroPoint) point,
+            pointToShoint zeroPoint point)) [
+            (Point 0 0)
+            ,(Point 1 0)
+            ,(Point (-1) 0)
+            ,(Point 0 1)
+            ,(Point 0 (-1))
+    ]) ++ assertManyPointToShoint "Point->Shoint->Point->Shoint on quarters"
+        (map (\point -> (zeroPoint,
+            (shointToPoint zeroPoint . pointToShoint zeroPoint) point,
+            pointToShoint zeroPoint point)) [
+            (Point 1 1)
+            ,(Point (-1) 1)
+            ,(Point (-1) (-1))
+            ,(Point 1 (-1))
+    ]) ++ assertManyPointToShoint "Point->Shoint->Point->Shoint near axis"
+        (map (\point -> (zeroPoint,
+            (shointToPoint zeroPoint . pointToShoint zeroPoint) point,
+            pointToShoint zeroPoint point)) [
+            (Point 1 0.1)
+            ,(Point (-1) 0.1)
+            ,(Point (-1) (-0.1))
+            ,(Point 1 (-0.1))
+    ])
 
 main = runTestTT testList
