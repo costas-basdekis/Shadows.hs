@@ -5,12 +5,19 @@ import Test.HUnit
 
 
 -- Test the input->expected of function
-assertExpected1 function testName a expected =
+assertExpected function testName a expected =
     assertEqual testName expected $
         function a
 assertExpected2 function testName a b expected =
     assertEqual testName expected $
         function a b
+
+-- Test the [input->expected] of function
+assertManyExpected function testName args_expected_pairs =
+    zipWith (\index (a, expected) ->
+        assertExpected function (testName ++ " " ++ show index) a expected)
+        [1..] args_expected_pairs
+
 
 assertShadows = assertExpected2 createShadows
 
@@ -18,9 +25,10 @@ assertWallToShadow = assertExpected2 wallToShadow
 
 assertPointToShoint = assertExpected2 pointToShoint
 
-assertAngleOf = assertExpected1 angleOf
+assertAngleOf = assertExpected angleOf
+assertManyAngleOf = assertManyExpected angleOf
 
-testList = TestList $ map TestCase [
+testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
             True True
         ,assertShadows "No walls produce no walls"
@@ -52,21 +60,14 @@ testList = TestList $ map TestCase [
             zeroPoint
             zeroPoint
             origin
-        ,assertAngleOf "Angle of origin"
-            (Point 0 0)
-            0
-        ,assertAngleOf "Angle of +x"
-            (Point 1 0)
-            0
-        ,assertAngleOf "Angle of -x"
-            (Point (-1) 0)
-            (-pi)
-        ,assertAngleOf "Angle of +y"
-            (Point 0 1)
-            (pi/2)
-        ,assertAngleOf "Angle of -y"
-            (Point 0 (-1))
-            (-pi/2)
+    ] ++ assertManyAngleOf "Angle of points on axles"
+        [
+            ((Point 0 0), 0)
+            ,((Point 1 0), 0)
+            ,((Point (-1) 0), (-pi))
+            ,((Point 0 1), (pi/2))
+            ,((Point 0 (-1)), (-pi/2))
+    ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
             zeroPoint
