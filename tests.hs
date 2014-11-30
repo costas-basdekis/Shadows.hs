@@ -4,19 +4,21 @@ import Shadows
 import Test.HUnit
 
 
--- Test the input->expected of `createShadows`
+-- Test the input->expected of function
+assertExpected1 function testName a expected =
+    assertEqual testName expected $
+        function a
 assertExpected2 function testName a b expected =
     assertEqual testName expected $
         function a b
 
--- Test the input->expected of `createShadows`
 assertShadows = assertExpected2 createShadows
 
--- Test the input->expected of `wallToShadow`
 assertWallToShadow = assertExpected2 wallToShadow
 
--- Test the input->expected of `pointToShoint`
 assertPointToShoint = assertExpected2 pointToShoint
+
+assertAngleOf = assertExpected1 angleOf
 
 testList = TestList $ map TestCase [
         assertEqual "The test suite runs"
@@ -50,6 +52,15 @@ testList = TestList $ map TestCase [
             zeroPoint
             zeroPoint
             origin
+        ,assertAngleOf "Angle of origin"
+            (Point 0 0)
+            0
+        {- This test is too big, we need to break it down
+        ,assertPointToShoint "Shoint on +x axis"
+            zeroPoint
+            (Point 1 0)
+            (Shoint 0 1)
+        -}
     ]
 
 main = runTestTT testList
