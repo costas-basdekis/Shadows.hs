@@ -47,6 +47,9 @@ assertManyXOf = assertManyExpected xOf
 assertYOf = assertExpected yOf
 assertManyYOf = assertManyExpected yOf
 
+assertShointToPoint = assertExpected2 shointToPoint
+assertManyShointToPoint = assertManyExpected2 shointToPoint
+
 testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
             True True
@@ -127,42 +130,21 @@ testList = TestList $ map TestCase $ [
             ((Point 0 0), (Point 0 0), (Point 0 0))
             ,((Point 1 1), (Point 1 1), (Point 0 0))
             ,((Point 3 4), (Point 2 6), (Point 1 (-2)))
-    ] ++ assertManyXOf "X of points on axis"
-        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
-            --Axis
+    ] ++ assertManyShointToPoint "Point->Shoint->Point on Axis"
+        (map (\point -> (zeroPoint, pointToShoint zeroPoint point, point)) [
             (Point 0 0)
             ,(Point 1 0)
             ,(Point (-1) 0)
             ,(Point 0 1)
             ,(Point 0 (-1))
-    ]) ++ assertManyXOf "X of points on quarters"
-        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
+    ]) ++ assertManyShointToPoint "Point->Shoint->Point on quarters"
+        (map (\point -> (zeroPoint, pointToShoint zeroPoint point, point)) [
             (Point 1 1)
             ,(Point (-1) 1)
             ,(Point (-1) (-1))
             ,(Point 1 (-1))
-    ]) ++ assertManyXOf "X of points near axis"
-        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
-            (Point 1 0.1)
-            ,(Point (-1) 0.1)
-            ,(Point (-1) (-0.1))
-            ,(Point 1 (-0.1))
-    ]) ++ assertManyYOf "Y of points on axis"
-        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
-            --Axis
-            (Point 0 0)
-            ,(Point 1 0)
-            ,(Point (-1) 0)
-            ,(Point 0 1)
-            ,(Point 0 (-1))
-    ]) ++ assertManyYOf "Y of points on quarters"
-        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
-            (Point 1 1)
-            ,(Point (-1) 1)
-            ,(Point (-1) (-1))
-            ,(Point 1 (-1))
-    ]) ++ assertManyYOf "Y of points near axis"
-        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
+    ]) ++ assertManyShointToPoint "Point->Shoint->Point near axis"
+        (map (\point -> (zeroPoint, pointToShoint zeroPoint point, point)) [
             (Point 1 0.1)
             ,(Point (-1) 0.1)
             ,(Point (-1) (-0.1))

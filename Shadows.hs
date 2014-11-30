@@ -74,3 +74,6 @@ xOf (Shoint angle length) = cos angle * length
 
 yOf :: Shoint -> Coordinate
 yOf (Shoint angle length) = sin angle * length
+
+shointToPoint :: Light -> Shoint -> Point
+shointToPoint light shoint = light .+ (Point (xOf shoint) (yOf shoint))
