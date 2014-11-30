@@ -55,6 +55,18 @@ testList = TestList $ map TestCase [
         ,assertAngleOf "Angle of origin"
             (Point 0 0)
             0
+        ,assertAngleOf "Angle of +x"
+            (Point 1 0)
+            0
+        ,assertAngleOf "Angle of -x"
+            (Point (-1) 0)
+            (-pi)
+        ,assertAngleOf "Angle of +y"
+            (Point 0 1)
+            (pi/2)
+        ,assertAngleOf "Angle of -y"
+            (Point 0 (-1))
+            (-pi/2)
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
             zeroPoint
