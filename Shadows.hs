@@ -17,10 +17,14 @@ anXPlus = 0 :: Angle
 anXMinus = (-pi) :: Angle
 anYPlus = (pi/2) :: Angle
 anYMinus = (-pi/2) :: Angle
-anQuarter1 = (-pi/4) :: Angle
-anQuarter2 = (-pi*3/4) :: Angle
-anQuarter3 = (-pi*5/4) :: Angle
-anQuarter4 = (-pi*7/4) :: Angle
+anQuarter1 = (pi/4) :: Angle
+anQuarter2 = (pi*3/4) :: Angle
+anQuarter3 = (-pi*3/4) :: Angle
+anQuarter4 = (-pi/4) :: Angle
+
+type Rotation = Angle
+rotHalf = pi :: Rotation
+rotQuarter = (pi/2) :: Rotation
 
 createShadows :: Point -> [Wall] -> [Wall]
 createShadows _ walls = walls
@@ -31,9 +35,16 @@ wallToShadow = undefined
 angleOf :: Point -> Angle
 angleOf (Point 0 0) = 0
 angleOf (Point x 0) = case (x > 0) of
-    True -> 0
-    False -> (-pi)
-angleOf (Point x y) = atan (y / x)
+    True -> anXPlus
+    False -> anXMinus
+angleOf (Point 0 y) = case (y > 0) of
+    True -> anYPlus
+    False -> anYMinus
+angleOf (Point x y) = case (x > 0) of
+    True -> atan (y / x)
+    False -> case (y > 0) of
+        True -> atan (y / x) + rotHalf
+        False -> atan (y / x) - rotHalf
 
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
