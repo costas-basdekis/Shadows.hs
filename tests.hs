@@ -41,6 +41,9 @@ assertManyPointSubtraction = assertManyExpected2 (.-)
 assertXOf = assertExpected xOf
 assertManyXOf = assertManyExpected xOf
 
+assertYOf = assertExpected yOf
+assertManyYOf = assertManyExpected yOf
+
 testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
             True True
@@ -137,6 +140,26 @@ testList = TestList $ map TestCase $ [
             ,(Point 1 (-1))
     ]) ++ assertManyXOf "X of points near axis"
         (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
+            (Point 1 0.1)
+            ,(Point (-1) 0.1)
+            ,(Point (-1) (-0.1))
+            ,(Point 1 (-0.1))
+    ]) ++ assertManyYOf "Y of points on axis"
+        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
+            --Axis
+            (Point 0 0)
+            ,(Point 1 0)
+            ,(Point (-1) 0)
+            ,(Point 0 1)
+            ,(Point 0 (-1))
+    ]) ++ assertManyYOf "Y of points on quarters"
+        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
+            (Point 1 1)
+            ,(Point (-1) 1)
+            ,(Point (-1) (-1))
+            ,(Point 1 (-1))
+    ]) ++ assertManyYOf "Y of points near axis"
+        (map (\point@(Point _ y) -> (pointToShoint zeroPoint point, y)) [
             (Point 1 0.1)
             ,(Point (-1) 0.1)
             ,(Point (-1) (-0.1))
