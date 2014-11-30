@@ -38,6 +38,9 @@ assertManyLengthOf = assertManyExpected lengthOf
 assertPointSubtraction = assertExpected2 (.-)
 assertManyPointSubtraction = assertManyExpected2 (.-)
 
+assertPointAddition = assertExpected2 (.+)
+assertManyPointAddition = assertManyExpected2 (.+)
+
 assertXOf = assertExpected xOf
 assertManyXOf = assertManyExpected xOf
 
@@ -164,6 +167,11 @@ testList = TestList $ map TestCase $ [
             ,(Point (-1) 0.1)
             ,(Point (-1) (-0.1))
             ,(Point 1 (-0.1))
-    ])
+    ]) ++ assertManyPointAddition "Point addition"
+        [
+            ((Point 0 0), (Point 0 0), (Point 0 0))
+            ,((Point 1 1), (Point 0 0), (Point 1 1))
+            ,((Point 2 6), (Point 1 (-2)), (Point 3 4))
+    ]
 
 main = runTestTT testList
