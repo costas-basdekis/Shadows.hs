@@ -50,5 +50,8 @@ angleOf (Point x y) = case (x > 0) of
 lengthOf :: Point -> Length
 lengthOf (Point x y) = sqrt $ x * x + y * y
 
+(.-) :: Point -> Point -> Point
+(Point lx ly) .- (Point rx ry) = Point (lx - rx) (ly - ry)
+
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
