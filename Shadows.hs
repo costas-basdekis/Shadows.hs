@@ -26,10 +26,12 @@ type Rotation = Angle
 rotHalf = pi :: Rotation
 rotQuarter = (pi/2) :: Rotation
 
-createShadows :: Point -> [Wall] -> [Wall]
+type Light = Point
+
+createShadows :: Light -> [Wall] -> [Wall]
 createShadows _ walls = walls
 
-wallToShadow :: Point -> Wall -> Shadow
+wallToShadow :: Light -> Wall -> Shadow
 wallToShadow = undefined
 
 angleOf :: Point -> Angle
@@ -53,6 +55,6 @@ lengthOf (Point x y) = sqrt $ x * x + y * y
 (.-) :: Point -> Point -> Point
 (Point lx ly) .- (Point rx ry) = Point (lx - rx) (ly - ry)
 
-pointToShoint :: Point -> Point -> Shoint
+pointToShoint :: Light -> Point -> Shoint
 pointToShoint light point = Shoint (angleOf vector) (lengthOf vector)
     where vector = point .- light
