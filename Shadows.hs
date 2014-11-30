@@ -1,9 +1,15 @@
 module Shadows where
 
-data Point = Point Float Float deriving (Eq, Show)
+type Coordinate = Float
+data Point = Point Coordinate Coordinate deriving (Eq, Show)
 data Wall = Wall Point Point deriving (Eq, Show)
-data Shoint = Shoint Float Float deriving (Eq, Show)
+type Angle = Float
+type Length = Float
+data Shoint = Shoint Angle Length deriving (Eq, Show)
 data Shadow = Shadow Shoint Shoint deriving (Eq, Show)
+
+zeroPoint = Point 0 0
+origin = Shoint 0 0
 
 createShadows :: Point -> [Wall] -> [Wall]
 createShadows _ walls = walls
@@ -12,4 +18,4 @@ wallToShadow :: Point -> Wall -> Shadow
 wallToShadow = undefined
 
 pointToShoint :: Point -> Point -> Shoint
-pointToShoint _ _ = (Shoint 0 0)
+pointToShoint _ _ = origin
