@@ -12,4 +12,4 @@ wallToShadow :: Point -> Wall -> Shadow
 wallToShadow = undefined
 
 pointToShoint :: Point -> Point -> Shoint
-pointToShoint = undefined
+pointToShoint _ _ = (Shoint 0 0)
