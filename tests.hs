@@ -73,6 +73,12 @@ testList = TestList $ map TestCase $ [
             ,((Point (-1) 1), anQuarter2)
             ,((Point (-1) (-1)), anQuarter3)
             ,((Point 1 (-1)), anQuarter4)
+    ] ++ assertManyAngleOf "Angle of points on near axis"
+        [
+            ((Point 1 0.1), 0.09966865249116204)
+            ,((Point (-1) 0.1), 3.0419240010986313)
+            ,((Point (-1) (-0.1)), -3.0419240010986313)
+            ,((Point 1 (-0.1)), -0.09966865249116204)
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
