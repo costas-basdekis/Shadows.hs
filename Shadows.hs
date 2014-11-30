@@ -48,7 +48,7 @@ angleOf (Point x y) = case (x > 0) of
     where rawAngle = atan (y / x)
 
 lengthOf :: Point -> Length
-lengthOf = undefined
+lengthOf (Point x y) = sqrt $ x * x + y * y
 
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
