@@ -38,6 +38,9 @@ assertManyLengthOf = assertManyExpected lengthOf
 assertPointSubtraction = assertExpected2 (.-)
 assertManyPointSubtraction = assertManyExpected2 (.-)
 
+assertXOf = assertExpected xOf
+assertManyXOf = assertManyExpected xOf
+
 testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
             True True
@@ -113,6 +116,31 @@ testList = TestList $ map TestCase $ [
             zeroPoint
             (Point 1 0)
             (Shoint 0 1)
-    ]
+    ] ++ assertManyPointSubtraction "Point subtraction"
+        [
+            ((Point 0 0), (Point 0 0), (Point 0 0))
+            ,((Point 1 1), (Point 1 1), (Point 0 0))
+            ,((Point 3 4), (Point 2 6), (Point 1 (-2)))
+    ] ++ assertManyXOf "X of points on axis"
+        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
+            --Axis
+            (Point 0 0)
+            ,(Point 1 0)
+            ,(Point (-1) 0)
+            ,(Point 0 1)
+            ,(Point 0 (-1))
+    ]) ++ assertManyXOf "X of points on quarters"
+        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
+            (Point 1 1)
+            ,(Point (-1) 1)
+            ,(Point (-1) (-1))
+            ,(Point 1 (-1))
+    ]) ++ assertManyXOf "X of points near axis"
+        (map (\point@(Point x _) -> (pointToShoint zeroPoint point, x)) [
+            (Point 1 0.1)
+            ,(Point (-1) 0.1)
+            ,(Point (-1) (-0.1))
+            ,(Point 1 (-0.1))
+    ])
 
 main = runTestTT testList
