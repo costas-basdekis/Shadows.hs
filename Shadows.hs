@@ -19,7 +19,10 @@ wallToShadow :: Point -> Wall -> Shadow
 wallToShadow = undefined
 
 angleOf :: Point -> Angle
-angleOf _ = 0
+angleOf (Point 0 0) = 0
+angleOf (Point x 0) = case (x > 0) of
+    True -> 0
+    False -> (-pi)
 
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin
