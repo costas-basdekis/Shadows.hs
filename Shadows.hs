@@ -47,5 +47,8 @@ angleOf (Point x y) = case (x > 0) of
         False -> rawAngle - rotHalf
     where rawAngle = atan (y / x)
 
+lengthOf :: Point -> Length
+lengthOf = undefined
+
 pointToShoint :: Point -> Point -> Shoint
 pointToShoint _ _ = origin

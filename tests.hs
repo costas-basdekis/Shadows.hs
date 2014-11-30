@@ -28,6 +28,9 @@ assertPointToShoint = assertExpected2 pointToShoint
 assertAngleOf = assertExpected angleOf
 assertManyAngleOf = assertManyExpected angleOf
 
+assertLengthOf = assertExpected lengthOf
+assertManyLengthOf = assertManyExpected lengthOf
+
 testList = TestList $ map TestCase $ [
         assertEqual "The test suite runs"
             True True
@@ -79,6 +82,13 @@ testList = TestList $ map TestCase $ [
             ,((Point (-1) 0.1), 3.0419240010986313)
             ,((Point (-1) (-0.1)), -3.0419240010986313)
             ,((Point 1 (-0.1)), -0.09966865249116204)
+    ] ++ assertManyLengthOf "Length of points on axles"
+        [
+            ((Point 0 0), 0)
+            ,((Point 1 0), 1)
+            ,((Point (-1) 0), 1)
+            ,((Point 0 1), 1)
+            ,((Point 0 (-1)), 1)
     ] ++ [
         {- This test is too big, we need to break it down
         ,assertPointToShoint "Shoint on +x axis"
