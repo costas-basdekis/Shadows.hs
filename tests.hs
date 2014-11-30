@@ -111,12 +111,10 @@ testList = TestList $ map TestCase $ [
             ,((Point 1 1), (Point 1 1), (Point 0 0))
             ,((Point 3 4), (Point 2 6), (Point 1 (-2)))
     ] ++ [
-        {- This test is too big, we need to break it down
-        ,assertPointToShoint "Shoint on +x axis"
+        assertPointToShoint "Shoint on +x axis"
             zeroPoint
             (Point 1 0)
             (Shoint 0 1)
-        -}
     ]
 
 main = runTestTT testList
