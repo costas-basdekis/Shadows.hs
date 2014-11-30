@@ -5,19 +5,18 @@ import Test.HUnit
 
 
 -- Test the input->expected of `createShadows`
-assertShadows testName light walls expected =
+assertExpected2 function testName a b expected =
     assertEqual testName expected $
-        createShadows light walls
+        function a b
+
+-- Test the input->expected of `createShadows`
+assertShadows = assertExpected2 createShadows
 
 -- Test the input->expected of `wallToShadow`
-assertWallToShadow testName light wall expected =
-    assertEqual testName expected $
-        wallToShadow light wall
+assertWallToShadow = assertExpected2 wallToShadow
 
 -- Test the input->expected of `pointToShoint`
-assertPointToShoint testName light point expected =
-    assertEqual testName expected $
-        pointToShoint light point
+assertPointToShoint = assertExpected2 pointToShoint
 
 testList = TestList $ map TestCase [
         assertEqual "The test suite runs"
